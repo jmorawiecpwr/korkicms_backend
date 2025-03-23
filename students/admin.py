@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import LessonTopic, Homework, Student
+from .models import Lesson, Homework, Student
 
 # Register your models here.
 @admin.register(Student)
@@ -7,9 +7,9 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ['name', 'classtype', 'discord', 'classday', 'parent', 'hourly_rate', 'profile', 'additional_info']
     ordering = ['classtype', 'profile']
 
-@admin.register(LessonTopic)
-class LessonTopicAdmin(admin.ModelAdmin):
-    list_display = ['student', 'title']
+@admin.register(Lesson)
+class LessonAdmin(admin.ModelAdmin):
+    list_display = ['student', 'date', 'topic', 'homework', 'is_settled', 'homework_done', 'homework_sent']
 
 @admin.register(Homework)
 class HomeworkAdmin(admin.ModelAdmin):

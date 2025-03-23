@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 class Student(models.Model):
     name = models.CharField(max_length=100)
     classtype = models.CharField(max_length=20)
@@ -14,13 +13,18 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
-    
-class LessonTopic(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name='topics')
-    title = models.CharField(max_length=255)
+
+class Lesson(models.Model):
+    student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="lessons")
+    date = models.DateField()  # data lekcji
+    topic = models.CharField(max_length=255)
+    homework = models.TextField(blank=True)
+    is_settled = models.BooleanField(default=False)
+    homework_done = models.BooleanField(default=False)
+    homework_sent = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
+        return f"{self.date} - {self.topic}"
 
 class Homework(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="homeworks")
