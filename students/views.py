@@ -3,6 +3,31 @@ from rest_framework import viewsets
 from .models import Student, Lesson, Homework
 from .serializers import StudentSerializer, LessonSerializer, HomeworkSerializer
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.serializers import ModelSerializer
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework import status
+from django.contrib.auth.models import User
+
+
+class RegisterSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username', 'password']
+        extra_kwargs = {'password': {'write_only': True}}
+
+    def create(self, validated_data):
+        return User.objects.create_user(**validated_data)
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def register_user(request):
+    serializer = RegisterSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response({"message": "Użytkownik utworzony"}, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class StudentViewSet(viewsets.ModelViewSet):
     queryset = Student.objects.none()
