@@ -1,0 +1,1 @@
+web: gunicorn korkicms_backend.wsgi --log-file -

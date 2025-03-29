@@ -18,12 +18,14 @@ class Student(models.Model):
 
 class Lesson(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE, related_name="lessons")
-    date = models.DateField()  # data lekcji
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="lessons")
+    date = models.DateField()
     topic = models.CharField(max_length=255)
     homework = models.TextField(blank=True)
     is_settled = models.BooleanField(default=False)
     homework_done = models.BooleanField(default=False)
     homework_sent = models.BooleanField(default=False)
+
 
     def __str__(self):
         return f"{self.date} - {self.topic}"
