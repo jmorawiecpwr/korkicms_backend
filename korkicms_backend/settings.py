@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-n)^q*&nfk*jbic-a%3&4c(^_-=^)gu)v-ifr9%k96i9x1ztp6$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+     "korkicmsbackend-production.up.railway.app",
+     "127.0.0.1",
+     "localhost"
+]
 
 
 # Application definition
