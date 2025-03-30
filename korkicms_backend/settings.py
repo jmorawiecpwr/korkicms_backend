@@ -59,13 +59,13 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'korkicms_backend.urls'
@@ -138,11 +138,13 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://korkicms-frontend.vercel.app"
+    "https://korkicms-frontend.vercel.app",
+    "http://localhost:5174"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://korkicmsbackend-production.up.railway.app"
+    "https://korkicmsbackend-production.up.railway.app",
+    "http://localhost:5174"
 ]
 
 # Internationalization
