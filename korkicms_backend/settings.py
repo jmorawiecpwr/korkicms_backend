@@ -123,7 +123,7 @@ CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://korkicms-frontend.vercel.app/"
+    "https://korkicms-frontend.vercel.app"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
