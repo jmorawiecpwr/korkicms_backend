@@ -9,6 +9,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.models import User
+from rest_framework.exceptions import PermissionDenied
 
 
 class RegisterSerializer(ModelSerializer):
@@ -41,7 +42,6 @@ class StudentViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 class LessonViewSet(viewsets.ModelViewSet):
-    queryset = Lesson.objects.none()
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated]
 
@@ -49,16 +49,11 @@ class LessonViewSet(viewsets.ModelViewSet):
         return Lesson.objects.filter(student__owner=self.request.user)
 
     def perform_create(self, serializer):
-        if serializer.validated_data['student'].owner != self.request.user:
+        student = serializer.validated_data.get('student')
+        if student.owner != self.request.user:
             raise PermissionDenied("Nie możesz dodawać lekcji do tego ucznia.")
-        serializer.save()
-
-
-    def get_queryset(self):
-        return Lesson.objects.filter(owner=self.request.user)
-
-    def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+
 
 class HomeworkViewSet(viewsets.ModelViewSet):
     queryset = Homework.objects.none()
