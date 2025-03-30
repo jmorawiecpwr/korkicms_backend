@@ -42,6 +42,7 @@ class StudentViewSet(viewsets.ModelViewSet):
         serializer.save(owner=self.request.user)
 
 class LessonViewSet(viewsets.ModelViewSet):
+    queryset = Lesson.objects.none()
     serializer_class = LessonSerializer
     permission_classes = [IsAuthenticated]
 
@@ -53,7 +54,6 @@ class LessonViewSet(viewsets.ModelViewSet):
         if student.owner != self.request.user:
             raise PermissionDenied("Nie możesz dodawać lekcji do tego ucznia.")
         serializer.save(owner=self.request.user)
-
 
 class HomeworkViewSet(viewsets.ModelViewSet):
     queryset = Homework.objects.none()
