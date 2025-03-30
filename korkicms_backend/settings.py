@@ -122,6 +122,10 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 
+CORS_ALLOWED_ORIGINS = [
+    "https://korkicms-frontend.vercel.app/"
+]
+
 CSRF_TRUSTED_ORIGINS = [
     "https://korkicmsbackend-production.up.railway.app"
 ]
