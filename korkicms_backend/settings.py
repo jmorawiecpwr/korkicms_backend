@@ -146,7 +146,8 @@ CORS_ALLOWED_ORIGINS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://korkicmsbackend-production.up.railway.app",
     "http://localhost:5174",
-    "https://korkicms.vercel.app"
+    "https://korkicms.vercel.app",
+    "http://localhost:5173"
 ]
 
 # Internationalization
