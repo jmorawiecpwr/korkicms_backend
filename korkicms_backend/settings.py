@@ -140,7 +140,8 @@ SESSION_COOKIE_SECURE = True
 CORS_ALLOWED_ORIGINS = [
     "https://korkicms-frontend.vercel.app",
     "http://localhost:5174",
-    "https://korkicms.vercel.app"
+    "https://korkicms.vercel.app",
+    "http://localhost:5173"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
