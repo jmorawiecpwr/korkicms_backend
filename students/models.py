@@ -6,7 +6,7 @@ class Student(models.Model):
     classtype = models.CharField(max_length=20)
     discord = models.CharField(max_length=50)
     classday = models.CharField(max_length=50)
-    parent = models.CharField(max_length=20)
+    parent = models.CharField(max_length=20, null=True, blank=True)
     hourly_rate = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     profile = models.CharField(max_length=100, null=True, blank=True)
     schedule = models.CharField(max_length=100, null=True)
